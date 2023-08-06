@@ -139,7 +139,30 @@ class ImageDataset(Dataset):
 
     @staticmethod
     def resize_image(image, target_size):
-        # rest of the code is the same
+        # Get the current width and height of the image
+        width, height = image.size
+
+        # Check which dimension (width or height) is the maximum
+        max_dimension = max(width, height)
+
+        # If the image is smaller than target, abort
+        if max(width, height) <= target_size:
+            return image
+
+        # Calculate the scale factor to resize the image
+        scale_factor = 1
+        if max_dimension > target_size:
+            scale_factor = target_size / max_dimension
+
+        # Calculate the new width and height using the scale factor
+        new_width = int(width * scale_factor)
+        new_height = int(height * scale_factor)
+
+        # Resize the image while maintaining the aspect ratio
+        resized_image = image.resize((new_width, new_height))
+
+        # Return the resized image
+        return resized_image
 
     @staticmethod
     def collate_fn(batch):
