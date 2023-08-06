@@ -176,7 +176,7 @@ def load_workflow(file_path: str) -> Workflow:
 
 def main(args):
     #model_name_and_type
-    model_name, model_type = self.model_name_and_type.split('/')
+    model_name, model_type = args.model_name_and_type.split('/')
     device = torch.device("cuda") if torch.cuda.is_available() else torch.device("cpu")
     model, vis_processors, _ = load_model_and_preprocess(name=model_name, model_type=model_type, is_eval=True, device=device)
 
