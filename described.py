@@ -175,7 +175,7 @@ def load_workflow(file_path: str) -> Workflow:
 
 
 def main(args):
-    #model_name_and_type
+    print(model_name_and_type)
     model_name, model_type = args.model_name_and_type.split('/')
     device = torch.device("cuda") if torch.cuda.is_available() else torch.device("cpu")
     model, vis_processors, _ = load_model_and_preprocess(name=model_name, model_type=model_type, is_eval=True, device=device)
@@ -200,7 +200,7 @@ def main(args):
 if __name__ == "__main__":
     args = argparse.ArgumentParser("described")
     args.add_argument("--workflow", type=str, default="./workflows/standard.json5", help="The workflow file to use")
-    args.add_argument("--model_name_and_type", type=str, default="blip2_t5/pretrain_flant5xxl", help='''A compatible model type. One of: blip2_opt/(pretrain_opt2.7b, caption_coco_opt2.7b, pretrain_opt6.7b, caption_coco_opt6.7b), blip2_t5/(pretrain_flant5xl, caption_coco_flant5xl, pretrain_flant5xxl)''')
+    args.add_argument("--model_name_and_type", type=str, default="blip2_t5/pretrain_flant5xl", help='''A compatible model type. One of: blip2_opt/(pretrain_opt2.7b, caption_coco_opt2.7b, pretrain_opt6.7b, caption_coco_opt6.7b), blip2_t5/(pretrain_flant5xl, caption_coco_flant5xl, pretrain_flant5xxl)''')
     args.add_argument("--path", type=str, required=True, help="Path to images to be captioned")
     args.add_argument("--overwrite", default=True, action="store_true", help="Overwrite existing captions")
     args.add_argument("--prefix", type=str, help="a string applied at the beginning of each caption")
