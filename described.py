@@ -193,6 +193,7 @@ def main(args):
             answer = inquisitor.ask(image.to(device))
             with open(caption_path, "w") as f:
                 f.write(answer)
+                print(answer)
         except Exception as e:
             print(f"Failed to process {caption_path}, {str(e)}")
 
